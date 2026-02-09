@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
@@ -17,14 +16,15 @@
         <div class="inputs">
             <input placeholder="title" id="title" type="text">
             <div class="price">
-                <input type="number" name="" id="price" placeholder="price">
-                <input type="text" name="" id="taxes" placeholder="taxes">
-                <input type="text" name="" id="ads" placeholder="ads">
-                <input type="number" name="" id="discount" placeholder="discount">
+            
+                <input onkeyup="getTotal()" type="number" name="" id="price" placeholder="price">
+                <input onkeyup="getTotal()" type="number" name="" id="taxes" placeholder="taxes">
+                <input onkeyup="getTotal()" type="number" name="" id="ads" placeholder="ads">
+                <input onkeyup="getTotal()" type="number" name="" id="discount" placeholder="discount">
                 <small id="total"></small>
             </div>
-            <input placeholder="title" id="title" type="text">
-            <input placeholder="category" id="title" type="text">
+            <input placeholder="count" id="count" type="number">
+            <input placeholder="category" id="category" type="text">
             <button type="submit" id="submit">Create</button>
            
         </div>
@@ -140,5 +140,6 @@
             </div>
         </div>
     </div>
+    <script src="js\script.js"></script>
 </body>
 </html>
