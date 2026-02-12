@@ -11,11 +11,48 @@ let submit = document.getElementById("submit");
 
 function getTotal() {
     if (price.value != "") {
-        let sum = (+price.value + +taxes.value + +ads.value) - +discount.value;
-        total.innerHTML = sum
-        total.style.background = "#040"
+        let sum = ((parseFloat(price.value) || 0 )
+                + (parseFloat(taxes.value) || 0)
+                + ( parseFloat(ads.value) || 0 ))
+                - ( parseFloat(discount.value) || 0);
+        total.innerHTML = sum;
+        total.style.background = "#040";
     }else {
-        total.style.background = "#a00d02"
-        total.innerHTML = ""
+        total.style.background = "#a00d02";
+        total.innerHTML = "";
     }
+};
+let dataPro;
+if (localStorage.getItem("locale_data") == false) {
+
+    dataPro =[];
+}
+else{
+    dataPro = JSON.parse(localStorage.getItem("locale_data"))
+}
+submit.onclick = function() {
+    let newPro = {
+        price:price.value,
+        title:title.value,
+        taxes:taxes.value,
+        ads:ads.value,
+        discount:discount.value,
+        total:total.value,
+        count:count.value,
+        category:category.value,
+    };clearData
+    dataPro += newPro;
+    localStorage.setItem("locale_data" , JSON.stringify(dataPro))
+    clearData();
+}
+
+function clearData() {
+    price.value = ""
+    title.value = ""
+    taxes.value= ""
+    ads.value= ""
+    discount.value= ""
+    total.value= ""
+    count.value= ""
+    category.value= ""
 }
