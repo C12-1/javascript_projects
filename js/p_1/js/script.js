@@ -73,11 +73,33 @@ function showData() {
         <td>${dataPro[i].discount}</td>
         <td>${dataPro[i].total}</td>
         <td>${dataPro[i].category}</td>
-        <td><button type="submit"id="update">update</button></td>
-        <td><button type="submit"id="delete">delete</button></td>
+        <td><button  type="submit"id="update">update</button></td>
+        <td><button onclick="deleteData(${i})" type="submit"id="delete">delete</button></td>
     </tr>`;
     }
-    document.getElementById("tbody").innerHTML = table
+    document.getElementById("tbody").innerHTML = table;
+    if (dataPro.length > 0) {
+        const btn = document.createElement("button")
+        btn.innerHTML = "delete all"
+        btn.style.margin = "20px 0"
+    };
     
 }
 showData();
+
+
+function deleteData(i) {
+    dataPro.splice(i,1);
+    localStorage.setItem("locale_data"  , JSON.stringify(dataPro));
+    showData();
+}
+
+// delete all products
+
+
+function deleteAll(){
+    
+
+    localStorage.clear();
+    showData();
+}
