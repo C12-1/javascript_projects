@@ -7,6 +7,7 @@ let total = document.getElementById("total");
 let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
+let deleteTheData = document.getElementById("deleteAllDiv");
 
 
 function getTotal() {
@@ -45,6 +46,8 @@ submit.onclick = function() {
     localStorage.setItem("locale_data" , JSON.stringify(dataPro));
     clearData();
     showData();
+    
+    
 }
 
 function clearData() {
@@ -78,14 +81,16 @@ function showData() {
     </tr>`;
     }
     document.getElementById("tbody").innerHTML = table;
+    
     if (dataPro.length > 0) {
-        const btn = document.createElement("button")
-        btn.innerHTML = "delete all"
-        btn.style.margin = "20px 0"
-    };
+        deleteTheData.innerHTML = `<button onclick="deleteAll();"  type="submit">delete All data</button>`
+        
+    }else {
+        deleteTheData.innerHTML  =""
+    }
     
 }
-showData();
+
 
 
 function deleteData(i) {
@@ -99,7 +104,9 @@ function deleteData(i) {
 
 function deleteAll(){
     
-
-    localStorage.clear();
+    dataPro.splice(0);
+    localStorage.clear()
+    
     showData();
 }
+showData();

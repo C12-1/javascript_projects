@@ -44,6 +44,9 @@ input:focus{
     padding:4px 2px;
      
 }
+#deleteAllDiv{
+    margin:20px 0;
+}
 #total::before{
     content:"Total: "
 }
