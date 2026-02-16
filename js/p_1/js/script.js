@@ -42,7 +42,13 @@ submit.onclick = function() {
         count:count.value,
         category:category.value,
     };
-    dataPro.push(newPro);
+    if (newPro.count >1) {
+        for (let i = 0 ; i < newPro.count ; i++){
+            dataPro.push(newPro);
+        }
+    } else{
+        dataPro.push(newPro);
+    }
     localStorage.setItem("locale_data" , JSON.stringify(dataPro));
     clearData();
     showData();
@@ -76,14 +82,14 @@ function showData() {
         <td>${dataPro[i].discount}</td>
         <td>${dataPro[i].total}</td>
         <td>${dataPro[i].category}</td>
-        <td><button  type="submit"id="update">update</button></td>
+        <td><button onclick="updateData(${i})"type="submit"id="update">update</button></td>
         <td><button onclick="deleteData(${i})" type="submit"id="delete">delete</button></td>
     </tr>`;
     }
     document.getElementById("tbody").innerHTML = table;
     
     if (dataPro.length > 0) {
-        deleteTheData.innerHTML = `<button onclick="deleteAll();"  type="submit">delete All data</button>`
+        deleteTheData.innerHTML = `<button  onclick="deleteAll();"  type="submit">delete All data ( ${dataPro.length } ) </button>`
         
     }else {
         deleteTheData.innerHTML  =""
@@ -94,6 +100,7 @@ function showData() {
 
 
 function deleteData(i) {
+    
     dataPro.splice(i,1);
     localStorage.setItem("locale_data"  , JSON.stringify(dataPro));
     showData();
@@ -107,6 +114,24 @@ function deleteAll(){
     dataPro.splice(0);
     localStorage.clear()
     
+    showData();
+}
+
+
+
+// update data
+
+function updateData(i){
+    title.value = dataPro[i].title;
+    price.value = dataPro[i].price;
+    taxes.value= dataPro[i].taxes;
+    ads.value= dataPro[i].ads;
+    discount.value =dataPro[i].discount;
+    category.value= dataPro[i].category;
+    getTotal();
+    count.style.display = "none";
+    submit.innerHTML ="Upadate".toUpperCase();
+   
     showData();
 }
 showData();
