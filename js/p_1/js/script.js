@@ -8,7 +8,8 @@ let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
 let deleteTheData = document.getElementById("deleteAllDiv");
-
+let mood = true;
+let tmp;
 
 function getTotal() {
     if (price.value != "") {
@@ -42,13 +43,21 @@ submit.onclick = function() {
         count:count.value,
         category:category.value,
     };
-    if (newPro.count >1) {
-        for (let i = 0 ; i < newPro.count ; i++){
+    
+    if (mood){
+        if (newPro.count >1) {
+            for (let i = 0 ; i < newPro.count ; i++){
+                dataPro.push(newPro);
+            }
+        } else{
             dataPro.push(newPro);
-        }
-    } else{
-        dataPro.push(newPro);
-    }
+    }} else{
+        dataPro[tmp] = newPro;
+        mood = true;
+        submit.innerHTML = "create";
+        count.style.display = "block";
+        };
+    
     localStorage.setItem("locale_data" , JSON.stringify(dataPro));
     clearData();
     showData();
@@ -65,10 +74,11 @@ function clearData() {
     count.value= "";
     category.value= "";
     total.innerHTML= "";
-    total.style.background = "#a00d02"
+    
 }
-
+//shows data
 function showData() {
+    getTotal();
     let table = "";
     for (let i = 0 ; i < dataPro.length ; i++) {
         
@@ -96,7 +106,7 @@ function showData() {
     }
     
 }
-
+//delete product
 
 
 function deleteData(i) {
@@ -131,7 +141,27 @@ function updateData(i){
     getTotal();
     count.style.display = "none";
     submit.innerHTML ="Upadate".toUpperCase();
-   
+    mood = false;
     showData();
+    tmp = i;
+    scroll({
+        top:0,
+        behavior:"smooth",
+    })
+    
+}
+
+
+
+//search data
+
+function searchMood(id){
+    if(id == "Title"){
+        smood = "title";
+    }else{
+        smood = "category";
+    }
+    let search = document.getElementById("search")
+    search.placeholder = id
 }
 showData();
