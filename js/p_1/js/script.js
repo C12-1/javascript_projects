@@ -10,6 +10,7 @@ let submit = document.getElementById("submit");
 let deleteTheData = document.getElementById("deleteAllDiv");
 let mood = true;
 let tmp;
+let sMood;
 
 function getTotal() {
     if (price.value != "") {
@@ -43,23 +44,28 @@ submit.onclick = function() {
         count:count.value,
         category:category.value,
     };
-    
-    if (mood){
-        if (newPro.count >1) {
-            for (let i = 0 ; i < newPro.count ; i++){
+    if (newPro.price != "" &&
+        newPro.title != "" &&
+        newPro.category != "" &&
+        newPro.count <= 100){
+        if (mood){
+
+            if (newPro.count >1) {
+                for (let i = 0 ; i < newPro.count ; i++){
+                    dataPro.push(newPro);
+                }
+            } else{
                 dataPro.push(newPro);
-            }
-        } else{
-            dataPro.push(newPro);
-    }} else{
-        dataPro[tmp] = newPro;
-        mood = true;
-        submit.innerHTML = "create";
-        count.style.display = "block";
-        };
-    
+        }} else{
+            dataPro[tmp] = newPro;
+            mood = true;
+            submit.innerHTML = "create";
+            count.style.display = "block";
+            };
+            clearData();
+    }
     localStorage.setItem("locale_data" , JSON.stringify(dataPro));
-    clearData();
+    
     showData();
     
     
@@ -84,7 +90,7 @@ function showData() {
         
         table +=`
      <tr>
-        <td>${i}</td>
+        <td>${i+1}</td>
         <td>${dataPro[i].title}</td>
         <td>${dataPro[i].price}</td>
         <td>${dataPro[i].taxes}</td>
@@ -156,12 +162,58 @@ function updateData(i){
 //search data
 
 function searchMood(id){
+    let search = document.getElementById("search");
     if(id == "Title"){
-        smood = "title";
+        sMood = "Title";
     }else{
-        smood = "category";
+        sMood = "Category";
     }
-    let search = document.getElementById("search")
-    search.placeholder = id
+    search.placeholder = `search by ${sMood}`;
+    search.focus();
+    search.value = "";
+    showData();
+
 }
+function searching(value){
+    let table = "";
+    for (let i = 0 ; i<dataPro.length ; i++){
+        
+        if (sMood == "Category"){
+            if (dataPro[i].category.toUpperCase().includes(value.toUpperCase())){
+                table +=`
+                <tr>
+                    <td>${i}</td>
+                    <td>${dataPro[i].title}</td>
+                    <td>${dataPro[i].price}</td>
+                    <td>${dataPro[i].taxes}</td>
+                    <td>${dataPro[i].ads}</td>
+                    <td>${dataPro[i].discount}</td>
+                    <td>${dataPro[i].total}</td>
+                    <td>${dataPro[i].category}</td>
+                    <td><button onclick="updateData(${i})"type="submit"id="update">update</button></td>
+                    <td><button onclick="deleteData(${i})" type="submit"id="delete">delete</button></td>
+                </tr>`;
+            };
+        } else{
+            if (dataPro[i].title.toUpperCase().includes(value.toUpperCase())){
+                table +=`
+                <tr>
+                    <td>${i}</td>
+                    <td>${dataPro[i].title}</td>
+                    <td>${dataPro[i].price}</td>
+                    <td>${dataPro[i].taxes}</td>
+                    <td>${dataPro[i].ads}</td>
+                    <td>${dataPro[i].discount}</td>
+                    <td>${dataPro[i].total}</td>
+                    <td>${dataPro[i].category}</td>
+                    <td><button onclick="updateData(${i})"type="submit"id="update">update</button></td>
+                    <td><button onclick="deleteData(${i})" type="submit"id="delete">delete</button></td>
+                </tr>`;
+            };
+        }
+    };
+    document.getElementById("tbody").innerHTML = table;
+};
+//cleane data
+
 showData();

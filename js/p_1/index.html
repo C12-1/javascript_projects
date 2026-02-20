@@ -29,7 +29,7 @@
            
         </div>
         <div class="outputs">
-            <input type="text" name="search" id="search" placeholder="search">
+            <input onkeyup="searching(this.value)" type="text" name="search" id="search" placeholder="search">
             <div class="buttons">
                 <button onclick="searchMood(this.id)" type="submit" id="Title">search by Title</button>
                 <button onclick="searchMood(this.id)" type="submit" id="Category">search by category</button>
