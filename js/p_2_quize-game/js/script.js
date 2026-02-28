@@ -80,7 +80,7 @@ function startQuiz() {
   //reset vars
   currentQuestionIndex = 0;
   score = 0;
-  scoreSpan.textContent = 0;
+  scoreSpan.textContent = score;
 
   startScreen.classList.remove("active");
   quizScreen.classList.add("active");
@@ -110,7 +110,7 @@ function selectAnswer(event) {
   if (answersDisabled) return
   answersDisabled = true;
   const selectedButton = event.target;
-  const isCorrect = selectedButton.dataset.correct === true;
+  const isCorrect = selectedButton.dataset.correct === "true";
   Array.from(answersContainer.children).forEach((button) => {
     if(button.dataset.correct === "true"){
       button.classList.add("correct");
@@ -120,7 +120,7 @@ function selectAnswer(event) {
   });
   if(isCorrect) {
     score++;
-    scoreSpan.textContent = score
+    scoreSpan.textContent = score;
   }
   setTimeout(() => {
     currentQuestionIndex++;
