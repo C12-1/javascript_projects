@@ -72,7 +72,10 @@ body {
     transition : transform 0.2s;
 }
 .color-box:hover {
-    transform : scale(1.02);
+    transform : scale(1.03);
+}
+.color-box:active {
+    transform : scale(1);
 }
 .color {
     height : 120px;
@@ -97,4 +100,9 @@ body {
 }
 .copy-btn:hover {
     color : #667eea
+}
+@media (max-width: 798px){
+    .pallet-container{
+        grid-template-columns: repeat(minmax(100px , 1fr));
+    }
 }
