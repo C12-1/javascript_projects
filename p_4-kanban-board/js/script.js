@@ -29,7 +29,7 @@ function dragEnter(e){
     this.classList.add("over")
 }
 function dragLeave(e){
-    this.classList.add("over")
+    this.classList.remove("over")
 }
 function dragDrop(e){
     const id = e.dataTransfer.getData("text/plain")
