@@ -41,11 +41,11 @@ while True:
         with open(js_path , "w") as js_file:
             js_file.write("")
         with open(css_path , "w") as css_file:
-            css_file.write("""
-            * {
-                margin : 0;
-                padding : 0;
-            }""")
+            css_file.write("""* {
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+}""")
         break
 
         
