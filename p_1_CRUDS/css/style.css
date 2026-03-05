@@ -57,6 +57,7 @@ button{
     background:#170194;
     border:none;
     border-radius:13px;
+    color:#fff;
     transition-duration: 0.5s;
     margin:5px 0px;
 }
