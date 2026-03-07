@@ -9,19 +9,19 @@ def check_existing(path):
         return False
 while True:
 
-    if check_existing(f"js\p_{i}"):
-        if check_existing(f"js\p_{i}\js\script.js"):
-            if check_existing(f"js\p_{i}\index.html"):
-                if check_existing(f"js\p_{i}\css\style.css"):
+    if check_existing(f"p_{i}"):
+        if check_existing(f"p_{i}\script.js"):
+            if check_existing(f"p_{i}\index.html"):
+                if check_existing(f"p_{i}\css\style.css"):
                     print("already done")
                     break
     else:
-        os.mkdir(f"js\p_{i}")
-        os.mkdir(f"js\p_{i}\js")
-        os.mkdir(f"js\p_{i}\css")
-        html_path = os.path.join(f"js\p_{i}" , "index.html")
-        js_path = os.path.join(f"js\p_{i}\js" , "script.js")
-        css_path = os.path.join(f"js\p_{i}\css" , "style.css")
+        os.mkdir(f"p_{i}")
+        os.mkdir(f"p_{i}\js")
+        os.mkdir(f"p_{i}\css")
+        html_path = os.path.join(f"p_{i}" , "index.html")
+        js_path = os.path.join(f"p_{i}\js" , "script.js")
+        css_path = os.path.join(f"p_{i}\css" , "style.css")
         with open(html_path , "w") as file:
             file.write("""<!DOCTYPE html>
 <html lang="en">
