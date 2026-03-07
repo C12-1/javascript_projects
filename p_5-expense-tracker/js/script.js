@@ -12,9 +12,9 @@ transactionFormEl.addEventListener("submit" , addTransaction);
 
 function addTransaction(e){
     e.preventDefault();
-    const description = descriptionEl.value.trim();
+    let description = descriptionEl.value.trim();
     const amount = parseFloat(amountEl.value);
-
+    description = capitalizeFirstLetter(description)
     transactions.push({
         id:Date.now(),
         description,
@@ -24,6 +24,10 @@ function addTransaction(e){
     updateTransactionList();
     updateSummary();
     transactionFormEl.reset();
+}
+
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
 function updateTransactionList(){
