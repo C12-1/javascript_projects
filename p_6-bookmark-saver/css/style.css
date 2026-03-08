@@ -85,10 +85,8 @@ button:hover {
 #bookmark-list button:hover {
   background-color: #c0392b;
 }
-#input-reqiured.disbled{
-  display:none
-}
 #input-reqiured{
+  display: none;
   color:red;
   font-size: 0.8rem;
 }

@@ -2,15 +2,25 @@ const addBookmarkBtn = document.getElementById("add-bookmark");
 const bookmarkList = document.getElementById("bookmark-list");
 const bookmarkNameInput = document.getElementById("bookmark-name");
 const bookmarkUrlInput = document.getElementById("bookmark-url");
+const inputReqiured = document.getElementById("input-reqiured");
 
 document.addEventListener("DOMContentLoaded" , loadBookmarks);
+document.addEventListener("keydown", () => {
+    bookmarkNameInput.value.length && (bookmarkNameInput.style.borderColor = "");
+    bookmarkUrlInput.value.length && (bookmarkUrlInput.style.borderColor = "");
+    bookmarkNameInput.value.length && bookmarkUrlInput.value.length && (inputReqiured.style.display = "none");
+});
 addBookmarkBtn.addEventListener("click" , () => {
     const name = bookmarkNameInput.value.trim();
     let url = bookmarkUrlInput.value.trim();
     if(!name || !url){
-        inputReqiured = document.getElementById("input-reqiured");
-        inputReqiured.display = "none"
+        inputReqiured.style.display = "block";
+        bookmarkNameInput.style.borderColor = "red";
+        bookmarkUrlInput.style.borderColor = "red";
     } else{
+        inputReqiured.style.display = "none"
+        bookmarkNameInput.style.borderColor = "";
+        bookmarkUrlInput.style.borderColor = "";
         if (!url.startsWith("http://") && !url.startsWith("https://")){
             url = "https://" + url;
         }
