@@ -25,10 +25,10 @@ lengthSlider.addEventListener("input" , () => {
 })
 
 
-generateButton.addEventListener("click" ,function  makePassword()  {
+generateButton.addEventListener("click" , makePassword);
 
-    
-    
+function  makePassword()  {
+
     const length = Number(lengthSlider.value);
     const includeUppercase = uppercaseCheckbox.checked;
     const includeLowercase = lowercaseCheckbox.checked;
@@ -44,8 +44,51 @@ generateButton.addEventListener("click" ,function  makePassword()  {
           includeLowercase ,
            includeSymbols ,
             includeNumbers);
-    passwordInput.value =  newPassword
-})
+    passwordInput.value =  newPassword;
+    updateStrengthMeter(newPassword);
+}
+
+function updateStrengthMeter(password){
+    const passwordLength = password.length;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerrCase = /[a-z]/.test(password);
+    const hasNumbers = /[0-9]/.test(password);
+    const hasSymbols = /[!@#$%^&*()-_=+[\]{}|;:,.<>?]/.test(password);
+
+    let strengthScore = 0;
+    strengthScore = Math.min(passwordLength*2 , 40);
+
+    if (hasUpperCase)  {strengthScore += 15}
+    if (hasLowerrCase)  {strengthScore += 15}
+    if (hasNumbers)  {strengthScore += 15}
+    if (hasSymbols)  {strengthScore += 15}
+
+    if (passwordLength < 8){
+        strengthScore = Math.min(strengthScore , 40);
+    }
+    const safeScore = Math.max(5 , Math.min(100 , strengthScore))
+    strengthBar.style.width = safeScore + "%" 
+
+    let strengthLabelText = "";
+    let barColor = "";
+
+    if (strengthScore < 40) {
+        // weak password
+        barColor = "#fc8181";
+        strengthLabelText = "Weak";
+    } else if (strengthScore < 70) {
+        // Medium password
+        barColor = "#fbd38d"; // Yellow
+        strengthLabelText = "Medium";
+    } else {
+        // Strong password
+        barColor = "#68d391"; // Green
+        strengthLabelText = "Strong";
+    }
+
+    strengthBar.style.backgroundColor = barColor;
+    strengthLabel.textContent = strengthLabelText;
+}
 function createRandomPassword(length ,includeUppercase ,includeLowercase ,includeSymbols ,includeNumbers){
     let allCharacters = "";
     if(includeUppercase) allCharacters += uppercaseLetters;
@@ -58,4 +101,23 @@ function createRandomPassword(length ,includeUppercase ,includeLowercase ,includ
         password += allCharacters[randomIndex];
     }
     return password
+}
+
+
+window.addEventListener("DOMContentLoaded" , makePassword);
+
+copyButton.addEventListener("click" , () => {
+    if(!passwordInput.value) return;
+    navigator.clipboard.writeText(passwordInput.value)
+    .then(() => showCopySuccess())
+    .catch((err) => {alert("there is no password generated!" , err)})
+})
+
+function showCopySuccess(){
+    copyButton.className = "fas fa-check";
+    copyButton.style.color = "#48bb78"
+    setTimeout(() => {
+        copyButton.className = "far fa-copy";
+        copyButton.style.color = ""
+    }, 2000);
 }
