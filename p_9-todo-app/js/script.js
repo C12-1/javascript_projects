@@ -137,15 +137,22 @@ filters.forEach(filter => {
 });
 function setActiveFilter(filter) {
     currentFilter = filter ;
-    filter.forEach(item => {
+    filters.forEach((item) => {
         if(item.getAttribute("data-filter") === filter ){
-            item.classList.add("active")
-        } else {}
-            item.classList.remove("active")
-    })
+            item.classList.add("active");
+        } else {
+            item.classList.remove("active");
+        }
+    });
+    
+    
     renderTodos();
 }
-
+function setDate(){
+    const options = {weekday:"long" , month:"short" , day:"numeric"}
+    const today = new Date();
+    dateElement.textContent = today.toLocaleDateString("en-US" , options);
+}
 window.addEventListener("DOMContentLoaded" , () => {
     renderTodos();
     updateItemsCount();
