@@ -23,5 +23,7 @@ Feel free to explore and enjoy 🚀
 | **Kanban Board** | A Kanban board built using the HTML Drag and Drop API. | [Live Demo](https://c12-1.github.io/javascript_projects/p_4-kanban-board) |
 | **Expnces Tracker** | An expenses tracker with incomes and balance using anumation and webkit-scrollbal editing | [Live Demo](https://c12-1.github.io/javascript_projects/p_5-expense-tracker)|
 | **Bookmark Saver** | bookmark svaer to save urls tree using localehost practising | [Live Demo](https://c12-1.github.io/javascript_projects/p_6-bookmark-saver) |
-| **Form validator** | checking login info username password email confirmpassword practicing length and validation and array | [Live Demo](https://c12-1.github.io/javascript_projects/p_7-form-validator)
+| **Form validator** | checking login info username password email confirmpassword practicing length and validation and array | [Live Demo](https://c12-1.github.io/javascript_projects/p_7-form-validator) |
+| **Password Generator** | generatign random password using acii letters and numbers && symbols for good practising math.random | [Live Demo](https://c12-1.github.io/javascript_projects/p_8-password-generator) |
+| **Todo App** | a todo app using localhost and array | [Live Demo](https://c12-1.github.io/javascript_projects/p_9-todo-app) |
 ---
