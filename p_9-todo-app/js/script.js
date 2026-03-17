@@ -49,7 +49,7 @@ function updateItemsCount() {
 }
 function checkEmptyState() {
     const filteredTodos = filterTodos(currentFilter);
-    if (filteredTodos?.length === 0) emptyState.classList.remove("hidden") 
+    if (filteredTodos.length === 0) emptyState.classList.remove("hidden") 
     else emptyState.classList.add("hidden");
    
 }
@@ -104,7 +104,8 @@ function renderTodos(){
         todoItem.appendChild(todoText);
         todoItem.appendChild(deleteBtn);
         todosList.appendChild(todoItem);
-    })
+    });
+    checkEmptyState();
 }
 function clearCompleted() {
     todos = todos.filter((todo) => !todo.completed);
@@ -151,4 +152,5 @@ function setDate(){
 window.addEventListener("DOMContentLoaded" , () => {
     renderTodos();
     updateItemsCount();
+    
 })

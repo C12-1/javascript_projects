@@ -14,6 +14,14 @@ form.addEventListener("submit" , (e) => {
         const isEmailValid = checkEmail(email);
         const isPasswordValid = checkLength(password , 6 , 25);
         const isPasswordsMatch = checkPasswordsMatch(password , confirmPassword);
+        isFormValid = isUsernameValid && isEmailValid && isPasswordValid && isPasswordsMatch;
+    }
+    if (isFormValid){
+        alert("Registration succesfull!!!");
+        form.reset();
+        document.querySelectorAll(".form-group").forEach(group => {
+            group.className = ".form-group"
+        })
     }
 });
 
@@ -27,6 +35,28 @@ function checkLength(input , min , max) {
     } else{
         showSuccess(input);
         return true
+    }
+}
+
+function checkPasswordsMatch(password , confirmPassword){
+    if (confirmPassword.value.trim() === password.value.trim()){
+        showSuccess(confirmPassword);
+        return true;
+
+    } else {
+        showError(input , "Passwords do not match");
+        return false;
+    }
+}
+function checkEmail(email){
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailRegex.test(email.value.trim())){
+        showSuccess(email);
+        return true;
+    } else {
+        showError(email , "Email is not valid");
+        return false;
     }
 }
 
