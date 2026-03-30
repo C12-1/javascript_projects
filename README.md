@@ -26,4 +26,7 @@ Feel free to explore and enjoy 🚀
 | **Form validator** | checking login info username password email confirmpassword practicing length and validation and array | [Live Demo](https://c12-1.github.io/javascript_projects/p_7-form-validator) |
 | **Password Generator** | generatign random password using acii letters and numbers && symbols for good practising math.random | [Live Demo](https://c12-1.github.io/javascript_projects/p_8-password-generator) |
 | **Todo App** | a todo app using localhost and array | [Live Demo](https://c12-1.github.io/javascript_projects/p_9-todo-app) |
+| **Contact Form** | a contact form using css & html only  | [Live Demo](https://c12-1.github.io/javascript_projects/p_10-contact-form) |
+| **Recipe Finder** | recipe finder using api (fetch)  | [Live Demo](https://c12-1.github.io/javascript_projects/p_11-recipe_finder) |
+| **Currency converter** | currency converter using api (fetch) | [Live Demo](https://c12-1.github.io/javascript_projects/p_12_currency_converter) |
 ---
